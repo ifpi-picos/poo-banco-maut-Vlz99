@@ -1,15 +1,17 @@
 public class Cliente {
     
-    String nome;
-    String cpf;
-    String dataNascimento;
-    String cep;
+   public static char[] ge;
+private String nome;
+   private String cpf;
+   private String dataNascimento;
+   private Endereco endereco;
     
-    public Cliente(String nome, String cpf, String dataNascimento, String cep) {
+    
+    public Cliente(String nome, String cpf, String dataNascimento, String endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
-        this.cep = cep;
+
     }
 
     public String getNome() {
@@ -24,8 +26,8 @@ public class Cliente {
         return dataNascimento;
     }
 
-    public String getCep() {
-        return cep;
+    public Endereco getEndereco() {
+        return endereco;
     }
    
 

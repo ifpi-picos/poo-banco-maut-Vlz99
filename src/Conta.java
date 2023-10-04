@@ -1,20 +1,21 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Conta {
- private String numeroAgencia;
- private String nomeCinte;
- private String numeroConta;
+ private final String numeroAgencia;
+ private final String nomeCinte;
+ private final String numeroConta;
+ private final String cpf;
  private double saldo;
+ private String trasacao;
 
  List<Conta> Conta = new ArrayList<Conta>();
  
- public Conta(String numeroAgencia, String nomeCinte, String numeroConta, double saldo) {
+ public Conta(String numeroAgencia, String nomeCinte, String numeroConta, double saldo, String cpf, String trasacao) {
     this.numeroAgencia = numeroAgencia;
     this.nomeCinte = nomeCinte;
     this.numeroConta = numeroConta;
     this.saldo = saldo;
+    this.cpf = cpf;
 }
 
 public String getNumeroAgencia() {
@@ -31,6 +32,14 @@ public String getNumeroConta() {
 
 public double getSaldo() {
     return saldo;
+}
+
+public String getCpf(){
+    return cpf;
+}
+
+public String getTrasacao() {
+    return trasacao;
 }
 
 }
