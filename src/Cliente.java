@@ -1,17 +1,16 @@
 public class Cliente {
     
-   public static char[] ge;
-private String nome;
-   private String cpf;
-   private String dataNascimento;
-   private Endereco endereco;
+    String nome;
+    private String cpf;
+    private String dataNascimento;
+    private Endereco endereco;
     
     
-    public Cliente(String nome, String cpf, String dataNascimento, String endereco) {
+    public Cliente(String nome, String cpf, String dataNascimento, Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
-
+        this.endereco = endereco;
     }
 
     public String getNome() {

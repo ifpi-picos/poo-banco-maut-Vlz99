@@ -1,45 +1,66 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
 public class Conta {
- private final String numeroAgencia;
- private final String nomeCinte;
- private final String numeroConta;
- private final String cpf;
- private double saldo;
- private String trasacao;
+    private final String numeroAgencia;
+    private final String numeroConta;
+    private Cliente cliente;
+    private double saldo = 0.0;
 
- List<Conta> Conta = new ArrayList<Conta>();
- 
- public Conta(String numeroAgencia, String nomeCinte, String numeroConta, double saldo, String cpf, String trasacao) {
-    this.numeroAgencia = numeroAgencia;
-    this.nomeCinte = nomeCinte;
-    this.numeroConta = numeroConta;
-    this.saldo = saldo;
-    this.cpf = cpf;
-}
+    List <Transacao> historicosTransacao;
 
-public String getNumeroAgencia() {
-    return numeroAgencia;
-}
+    
+    public Conta(String numeroAgencia, Cliente cliente, String numeroConta, double saldo) {
+        this.numeroAgencia = numeroAgencia;
+        this.numeroConta = numeroConta;
+        this.saldo = saldo;
+        this.cliente = cliente;
+        this.historicosTransacao = new ArrayList<>();
+    }
 
-public String getNomeCinte() {
-    return nomeCinte;
-}
+    public String getNumeroAgencia() {
+        return numeroAgencia;
+    }
 
-public String getNumeroConta() {
-    return numeroConta;
-}
+    public String getNumeroConta() {
+        return numeroConta;
+    }
 
-public double getSaldo() {
-    return saldo;
-}
+    public double getSaldo() {
+        return saldo;
+    }
 
-public String getCpf(){
-    return cpf;
-}
+    public Cliente getCliente(){
+        return cliente;
+    }
 
-public String getTrasacao() {
-    return trasacao;
-}
+    public String getNome() {
+        return cliente.nome;
+    }
 
+    public void depositar(double valor2) {
+    }
+
+    public void extrato(double valor3) {
+    }
+
+    public void sacar(double valor) {
+    }
+
+    public List<Transacao> getHistoricosTransacao() {
+        return historicosTransacao;
+    }
+
+    public boolean saque(double valor){
+        if(this.saldo >= valor){
+            this.saldo -= valor;
+            this.addHistoricoTransacao(valor*-1, "Saque");
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private void addHistoricoTransacao(double d, String string) {
+    }
 }

@@ -1,31 +1,20 @@
 public class Transacao {
-    private double valor;
-    private String data;
-    private String tipo;
-    
-    public Transacao(double valor, String data, String tipo) {
-        this.valor = valor;
+    String data;
+    double valor;
+    String tipo;
+
+    public Transacao(String data, double valor, String tipo) {
         this.data = data;
+        this.valor = valor;
         this.tipo = tipo;
-    
     }
-        public double getValor() {
-            return valor;
-        }
-        
-        public String getData() {
-            return data;
-        }
-        
-        public String getTipo() {
-            return tipo;
-            
-        
-        }
-        @Override
-        public String toString() {
-            return "Transacao [valor=" + valor + ", data=" + data + ", tipo=" + tipo + "]";
-        }
+
+    @Override
+    public String toString() {
+        return "Transacao{" +
+                "data=" + data +
+                ", valor=" + valor +
+                ", tipo='" + tipo + '\'' +
+                '}';
+    }
 }
-
-
