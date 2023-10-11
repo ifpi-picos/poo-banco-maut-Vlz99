@@ -1,9 +1,10 @@
+import java.time.LocalDate;
 public class Transacao {
-    String data;
+    LocalDate data;
     double valor;
     String tipo;
 
-    public Transacao(String data, double valor, String tipo) {
+    public Transacao(LocalDate data, double valor, String tipo) {
         this.data = data;
         this.valor = valor;
         this.tipo = tipo;
@@ -17,4 +18,5 @@ public class Transacao {
                 ", tipo='" + tipo + '\'' +
                 '}';
     }
+
 }

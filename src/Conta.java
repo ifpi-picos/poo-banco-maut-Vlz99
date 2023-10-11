@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,20 +36,27 @@ public class Conta {
     }
 
     public String getNome() {
-        return cliente.nome;
+        return cliente.getNome();
     }
 
     public void depositar(double valor2) {
-    }
-
-    public void extrato(double valor3) {
+        this.saldo += valor2;
+        this.addHistoricoTransacao(valor2, "Deposito");
     }
 
     public void sacar(double valor) {
+        if(this.saldo >= valor){
+            this.saldo -= valor;
+            this.addHistoricoTransacao(valor, "Saque");
+        }else{
+            System.out.println("saldo insuficiente");
+        }
     }
 
-    public List<Transacao> getHistoricosTransacao() {
-        return historicosTransacao;
+    public void getHistoricosTransacao() {
+        for (Transacao transacao : historicosTransacao) {
+            System.out.println(transacao);
+        }
     }
 
     public boolean saque(double valor){
@@ -62,5 +70,7 @@ public class Conta {
     }
 
     private void addHistoricoTransacao(double d, String string) {
+        Transacao transacao = new Transacao (LocalDate.now(), d, string);
+        this.historicosTransacao.add(transacao);
     }
 }

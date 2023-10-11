@@ -1,10 +1,5 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
-
 public class App {
-    private static String tipo;
-    private static String data;
 
     public static void main(String[] args) {
         Scanner var = new Scanner(System.in);
@@ -29,14 +24,11 @@ public class App {
         Endereco endereco = new Endereco(rua, cep, bairro, cidade, estado);
         Cliente client = new Cliente(nome, cpf, dn, endereco);
         Conta conta = new Conta("000", client, "000", 0);
-        Transacao transacao = new Transacao(tipo, 0, data);
-        
 
         String a = conta.getNome();
+        boolean aux = true;
 
-        while (true){
-
-            
+        while (aux == true){
             System.out.print(a);
             
             System.out.println(" O QUE VOCE DESEJA?");
@@ -59,17 +51,18 @@ public class App {
                 break;
                 case 3:
                 System.out.println( "extrato: ");
-                double valor3 = var.nextDouble();
-                conta.extrato(valor3);
+                conta.getHistoricosTransacao();
                 break;
                 case 4:
                 System.out.println("Saindo...");
+                aux = false;
                 break;
                 default:
                 System.out.println("Opcao invalida!");
                 
             }
         }
+        var.close();
     }
     
 }

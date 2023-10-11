@@ -1,8 +1,8 @@
 public class Cliente {
     
-    String nome;
-    private String cpf;
-    private String dataNascimento;
+    private String nome;
+    private final String cpf;
+    private final String dataNascimento;
     private Endereco endereco;
     
     
