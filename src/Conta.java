@@ -73,4 +73,14 @@ public class Conta {
         Transacao transacao = new Transacao (LocalDate.now(), d, string);
         this.historicosTransacao.add(transacao);
     }
+
+    public void adicionarContas(Conta conta2) {
+    }
+
+    public Object getcpf() {
+        return null;
+    }
+
+    public void transferir(Conta contaDestino, double valorTransferencia) {
+    }
 }

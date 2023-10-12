@@ -1,68 +1,85 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
 public class App {
 
     public static void main(String[] args) {
-        Scanner var = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        List<Conta> contas = new ArrayList<Conta>();
 
-        System.out.print("Digite o seu nome: ");
-        String nome = var.next();
-        System.out.print("Digite o seu cpf: ");
-        String cpf = var.next();
-        System.out.print("Digite a sua data de nascimento: ");
-        String dn = var.next();
-        System.out.print("Digite a sua rua: ");
-        String rua = var.next();
-        System.out.print("Digite o seu cep: ");
-        String cep = var.next();
-        System.out.print("Digite o seu bairro: ");
-        String bairro = var.next();
-        System.out.print("Digite a sua cidade: ");
-        String cidade = var.next();
-        System.out.print("Digite o seu estado: ");
-        String estado = var.next();
+        while (true) {
+            System.out.print("Digite o seu nome: ");
+            String nome = scanner.next();
 
-        Endereco endereco = new Endereco(rua, cep, bairro, cidade, estado);
-        Cliente client = new Cliente(nome, cpf, dn, endereco);
-        Conta conta = new Conta("000", client, "000", 0);
+            System.out.print("Digite o número da conta: ");
+            String numeroConta = scanner.next();
 
-        String a = conta.getNome();
-        boolean aux = true;
+            Endereco endereco = new Endereco("", "", "", "", "");
+            Cliente cliente = new Cliente(nome, "", "", endereco);
+            Conta conta = new Conta(numeroConta, cliente, numeroConta, 0);
+            contas.add(conta);
 
-        while (aux == true){
-            System.out.print(a);
-            
-            System.out.println(" O QUE VOCE DESEJA?");
-            System.out.println("1- SACAR");
-            System.out.println("2- DEPOSITAR");
-            System.out.println("3- EXTRATO");
-            System.out.println("4- SAIR");
-            
-            int opcao = var.nextInt();
-            switch (opcao) {
-            case 1:
-                System.out.println("Digite o valor que voce quer sacar: ");
-                double valor = var.nextDouble();
-                conta.sacar(valor);
+            boolean aux = true;
+
+            while (aux) {
+                System.out.println(cliente.getNome() + ", o que você deseja?");
+                System.out.println("1- SACAR");
+                System.out.println("2- DEPOSITAR");
+                System.out.println("3- EXTRATO");
+                System.out.println("4- TRANSFERIR");
+                System.out.println("5- SAIR");
+
+                int opcao = scanner.nextInt();
+                switch (opcao) {
+                    case 1:
+                        System.out.println("Digite o valor que você quer sacar: ");
+                        double valor = scanner.nextDouble();
+                        conta.sacar(valor);
+                        break;
+                    case 2:
+                        System.out.println("Digite o valor que você quer depositar: ");
+                        double valor2 = scanner.nextDouble();
+                        conta.depositar(valor2);
+                        break;
+                    case 3:
+                        System.out.println("Extrato: ");
+                        conta.getHistoricosTransacao();
+                        break;
+                    case 4:
+                        System.out.print("Digite o número da conta de destino: ");
+                        String numeroContaDestino = scanner.next();
+                        Conta contaDestino = null;
+                        for (Conta c : contas) {
+                            if (c.getNumeroConta().equals(numeroContaDestino)) {
+                                contaDestino = c;
+                                break;
+                            }
+                        }
+                        if (contaDestino != null) {
+                            System.out.println("Digite o valor que você deseja transferir: ");
+                            double valorTransferencia = scanner.nextDouble();
+                            conta.transferir(contaDestino, valorTransferencia);
+                        } else {
+                            System.out.println("Conta de destino não encontrada.");
+                        }
+                        break;
+                    case 5:
+                        System.out.println("Saindo...");
+                        aux = false;
+                        break;
+                    default:
+                        System.out.println("Opção inválida ou saldo insuficiente.");
+                }
+            }
+
+            System.out.print("Digite 0 para parar ou 1 para continuar: ");
+            int op = scanner.nextInt();
+            if (op == 0) {
+                System.out.println("Número de contas criadas: " + contas.size());
+                scanner.close();
                 break;
-                case 2:
-                System.out.println("Digite o valor que voce quer depositar: ");
-                double valor2 = var.nextDouble();
-                conta.depositar(valor2);
-                break;
-                case 3:
-                System.out.println( "extrato: ");
-                conta.getHistoricosTransacao();
-                break;
-                case 4:
-                System.out.println("Saindo...");
-                aux = false;
-                break;
-                default:
-                System.out.println("Opcao invalida!");
-                
             }
         }
-        var.close();
     }
-    
 }

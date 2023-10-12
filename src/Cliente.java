@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Cliente {
-    
+
     private String nome;
     private final String cpf;
     private final String dataNascimento;
     private Endereco endereco;
-    
-    
+    private List<Conta> contas = new ArrayList<>();
+
     public Cliente(String nome, String cpf, String dataNascimento, Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
@@ -28,7 +32,27 @@ public class Cliente {
     public Endereco getEndereco() {
         return endereco;
     }
-   
+
+    public List<Conta> getContas(){
+        return contas;
+    }
+
+    public void adicionarContas(Conta conta) {
+        contas.add(conta);
+    }
+      public Conta escolherConta(){
+        int aux = 1;
+        for (Conta conta : contas){
+            System.out.println("--> Conta " + aux + ": R$" + conta.getSaldo());
+            aux ++;
+        }
+
+        try (Scanner scanner1 = new Scanner(System.in)) {
+            int numeroContaEscolhida = scanner1.nextInt();
+            Conta contaEscolhida = contas.get(numeroContaEscolhida -1);
+            
+            return contaEscolhida;
+        }
+    }
 
 }
-   
