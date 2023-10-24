@@ -1,7 +1,6 @@
-package br.edu.ifpi.poo.endereco;
+
 
 public class Endereco {
-
     private String rua;
     private String bairro;
     private String cidade;
@@ -16,16 +15,11 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public String getRua() {
-        return rua;
+    public Endereco(String numero, String cep2) {
     }
 
     public void setRua(String rua) {
         this.rua = rua;
-    }
-
-    public String getBairro() {
-        return bairro;
     }
 
     public void setBairro(String bairro) {
@@ -56,5 +50,12 @@ public class Endereco {
         this.cep = cep;
     }
 
+    @Override  
+    public String toString() {
+        return "Endereco [bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + ", estado=" + estado + ", rua="
+                + rua + "]";
+    }
+
+    
     
 }
