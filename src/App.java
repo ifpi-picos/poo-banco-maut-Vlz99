@@ -5,8 +5,10 @@ public class App {
         Scanner input = new Scanner(System.in);
         int operacao;
         Cliente cliente = new Cliente("João", "123456789", "01/01/2000", null);
-        ContaPoupanca contaPoupanca = new ContaPoupanca("123", "123", cliente, 0.01, 0.01, 0.01);
-        ContaCorrente contaCorrente = new ContaCorrente("123", "123", cliente, 0.01);       
+        ContaPoupanca contaPoupanca = new ContaPoupanca("", "", cliente, 0.01, 0.01, 0.01, 0, new NotificacoesSms());
+        ContaCorrente contaCorrente = new ContaCorrente("", "", cliente, 0.01, 0, new NotificacoesEmail());
+
+
 
         do {
             System.out.println("***********************************");
@@ -35,11 +37,10 @@ public class App {
                 System.out.println("***********************************");
                 System.out.println("1. Conta Poupança");
                 System.out.println("2. Conta Corrente");
-                System.out.println("3. Voltar");
                 operacao = input.nextInt();
 
                 if(operacao == 1){
-                    contaPoupanca = new ContaPoupanca("123", "123", cliente, 0.01, 0.01, 0.01);
+                    contaPoupanca = new ContaPoupanca("", "", cliente, 0.01, 0.01, 0.01, 0, new NotificacoesSms());
                     System.out.println("***********************************");
                     System.out.println("********** Abrir Conta ************");
                     System.out.println("***********************************");
@@ -59,11 +60,9 @@ public class App {
                     String agencia = input.next();
                     System.out.println("Digite o numero da conta do cliente: ");
                     String numeroConta = input.next();
-                    System.out.println("Digite o valor do saldo inicial: ");
-                    double saldo = input.nextDouble();
                     System.out.println("Parabens, sua conta foi criada com sucesso!");
                 }else{
-                    contaCorrente = new ContaCorrente("123", "123", cliente, 0.01);
+                    contaCorrente = new ContaCorrente("", "", cliente, 0.01, 0,  new NotificacoesEmail());
                     System.out.println("***********************************");
                     System.out.println("********** Abrir Conta ************");
                     System.out.println("***********************************");
@@ -83,8 +82,6 @@ public class App {
                     String agencia = input.next();
                     System.out.println("Digite o numero da conta do cliente: ");
                     String numeroConta = input.next();
-                    System.out.println("Digite o valor do saldo inicial: ");
-                    double saldo = input.nextDouble();
                     System.out.println("Parabens, sua conta foi criada com sucesso!");
                 }
             }else if(operacao == 2){
@@ -95,7 +92,6 @@ public class App {
                 System.out.println("***********************************");
                 System.out.println("1. Conta Poupança");
                 System.out.println("2. Conta Corrente");
-                System.out.println("3. Voltar");
                 operacao = input.nextInt();
 
                 if(operacao == 1){
@@ -108,6 +104,8 @@ public class App {
                     double sacar = input.nextDouble();
                     contaPoupanca.sacar(sacar);
                     System.out.println("Seu saldo " + contaPoupanca.getSaldo());
+                    System.out.println("Enviado notificação por SMS");
+                    System.out.println("Enviado notificação por Email");
 
 
                 }else{
@@ -120,6 +118,8 @@ public class App {
                     double sacar = input.nextDouble();
                     contaCorrente.sacar(sacar);
                     System.out.println("Saque realizado com sucesso!" + contaCorrente.getSaldo());
+                    System.out.println("Enviado notificação por SMS");
+                    System.out.println("Enviado notificação por Email");
                 }
 
             }else if(operacao == 3){
@@ -130,7 +130,6 @@ public class App {
                 System.out.println("***********************************");
                 System.out.println("1. Conta Poupança");
                 System.out.println("2. Conta Corrente");
-                System.out.println("3. Voltar");
                 operacao = input.nextInt();
 
                 if(operacao == 1){
@@ -143,6 +142,8 @@ public class App {
                     double depositar = input.nextDouble();
                     contaPoupanca.depositar(depositar);
                     System.out.println("Deposito realizado com sucesso!" + contaPoupanca.getSaldo());
+                    System.out.println("Enviado notificação por SMS");
+                    System.out.println("Enviado notificação por Email");
 
                 }else{
                     System.out.println("***********************************");
@@ -154,6 +155,8 @@ public class App {
                     double depositar = input.nextDouble();
                     contaCorrente.depositar(depositar);
                     System.out.println("Deposito realizado com sucesso!" + contaCorrente.getSaldo());
+                    System.out.println("Enviado notificação por SMS");
+                    System.out.println("Enviado notificação por Email");
                 }
 
             }else if(operacao == 4){
@@ -164,7 +167,6 @@ public class App {
                 System.out.println("***********************************");
                 System.out.println("1. Conta Poupança");
                 System.out.println("2. Conta Corrente");
-                System.out.println("3. Voltar");
                 operacao = input.nextInt();
 
                 if(operacao == 1){
@@ -177,6 +179,8 @@ public class App {
                     double transferir = input.nextDouble();
                     contaPoupanca.transferir(contaCorrente, transferir);
                     System.out.println("Transferencia realizada com sucesso!" + contaPoupanca.getSaldo());
+                    System.out.println("Enviado notificação por SMS");
+                    System.out.println("Enviado notificação por Email");
 
                 }else{
                     System.out.println("***********************************");
@@ -188,6 +192,8 @@ public class App {
                     double transferir = input.nextDouble();
                     contaCorrente.transferir(contaPoupanca, transferir);
                     System.out.println("Transferencia realizada com sucesso!" + contaCorrente.getSaldo());
+                    System.out.println("Enviado notificação por SMS");
+                    System.out.println("Enviado notificação por Email");
                 }
 
             }else if(operacao == 5){
@@ -198,7 +204,6 @@ public class App {
                 System.out.println("***********************************");
                 System.out.println("1. Conta Poupança");
                 System.out.println("2. Conta Corrente");
-                System.out.println("3. Voltar");
                 operacao = input.nextInt();
 
                 if(operacao == 1){
@@ -209,6 +214,8 @@ public class App {
                     System.out.println("***********************************");
                     System.out.println("Extrato: ");
                     contaPoupanca.exibirExtrato();
+                    System.out.println("Enviado notificação por SMS");
+                    System.out.println("Enviado notificação por Email");
 
                 }else{
                     System.out.println("***********************************");
@@ -218,17 +225,25 @@ public class App {
                     System.out.println("***********************************");
                     System.out.println("Extrato: ");
                     contaCorrente.exibirExtrato();
+                    System.out.println("Enviado notificação por SMS");
+                    System.out.println("Enviado notificação por Email");
                 }
 
             }else if(operacao == 6){
-                System.out.println("Saindo...");
+                System.out.println("***********************************");
+                System.out.println("********** Sair *******************");
+                System.out.println("***********************************");
+                System.out.println("********** Obrigado! **************");
+                System.out.println("***********************************");
+                System.out.println("Volte sempre!");
                 break;
+
 
                 
             }
             
         
-        }while(operacao != 6);
+        }while(operacao != 7);
     }
 }
 

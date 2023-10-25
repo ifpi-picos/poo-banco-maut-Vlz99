@@ -3,12 +3,14 @@ public abstract class Conta {
     private String numero;
     protected double saldo;
     private Cliente cliente;
+    private Notificacoes notificacoes;
 
-    public Conta(String agencia, String numero, Cliente cliente) {
+    public Conta(String agencia, String numero, Cliente cliente, int transferenciasRealizadas, Notificacoes notificacoes2) {
         this.agencia = agencia;
         this.numero = numero;
         this.cliente = cliente;
         this.saldo = 0;
+        this.notificacoes = notificacoes;
     }
 
     public void depositar(double valor) {
@@ -68,6 +70,18 @@ public abstract class Conta {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public void notificacoes(String tipo, double valor) {
+        notificacoes.enviaNotificacoes(tipo, valor);
+    }
+
+    public void setNotificacoes(Notificacoes notificacoes) {
+        this.notificacoes = notificacoes;
+    }
+
+    public Notificacoes getNotificacoes() {
+        return notificacoes;
     }
 
 

@@ -2,8 +2,8 @@ public class ContaCorrente extends Conta {
     private double chequeEspecial;
     private int transferenciasRealizadas;
 
-    public ContaCorrente(String agencia, String numero, Cliente cliente, double chequeEspecial) {
-        super(agencia, numero, cliente);
+    public ContaCorrente(String agencia, String numero, Cliente cliente, double chequeEspecial, int transferenciasRealizadas, Notificacoes notificacoes) {
+        super(agencia, numero, cliente, transferenciasRealizadas, notificacoes);
         this.chequeEspecial = chequeEspecial;
         this.transferenciasRealizadas = 0;
     }
@@ -33,6 +33,9 @@ public class ContaCorrente extends Conta {
 
     public void setTransferenciasRealizadas(int transferenciasRealizadas) {
         this.transferenciasRealizadas = transferenciasRealizadas;
+    }
+
+    public void notificacoes() {
     }
 
     

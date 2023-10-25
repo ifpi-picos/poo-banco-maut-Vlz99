@@ -3,8 +3,8 @@ public class ContaPoupanca extends Conta{
     private double taxaTransferencia;
     private double rendimento;
 
-    public ContaPoupanca(String agencia, String numero, Cliente cliente, double taxaSaque, double taxaTransferencia, double rendimento) {
-        super(agencia, numero, cliente);
+    public ContaPoupanca(String agencia, String numero, Cliente cliente, double taxaSaque, double taxaTransferencia, double rendimento, int transferenciasRealizadas, Notificacoes notificacoes) {
+        super(agencia, numero, cliente, transferenciasRealizadas, notificacoes);
         this.taxaSaque = taxaSaque;
         this.taxaTransferencia = taxaTransferencia;
         this.rendimento = rendimento;
@@ -57,6 +57,22 @@ public class ContaPoupanca extends Conta{
     public void setRendimento(double rendimento) {
         this.rendimento = rendimento;
     }
+
+    public void notificacoes() {
+        
+    }
+
+    public String getTransferenciasRealizadas() {
+        return null;
+    }
+
+    public void setTransferenciasRealizadas(int transferenciasRealizadas) {
+        
+        
+    }
+    
+
+    
 
     
 }
