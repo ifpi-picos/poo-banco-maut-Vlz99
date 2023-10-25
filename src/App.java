@@ -4,13 +4,13 @@ public class App {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int operacao;
-        Cliente cliente = new Cliente("João", "123456789", "01/01/2000", null);
-        ContaPoupanca contaPoupanca = new ContaPoupanca("", "", cliente, 0.01, 0.01, 0.01, 0, new NotificacoesSms());
-        ContaCorrente contaCorrente = new ContaCorrente("", "", cliente, 0.01, 0, new NotificacoesEmail());
+        Cliente cliente = new Cliente(null, null, null, null);
+        ContaPoupanca contaPoupanca = new ContaPoupanca(null, null, cliente, 0.01, 0.01, 0.01, 0, new NotificacaoSms());
+        ContaCorrente contaCorrente = new ContaCorrente(null, null, cliente, 0.01, 0,  new NotificacaoEmail());
 
 
 
-        do {
+       do {
             System.out.println("***********************************");
             System.out.println("********** Banco Maut *************");
             System.out.println("********** Seja Bem Vindo *********");
@@ -40,7 +40,7 @@ public class App {
                 operacao = input.nextInt();
 
                 if(operacao == 1){
-                    contaPoupanca = new ContaPoupanca("", "", cliente, 0.01, 0.01, 0.01, 0, new NotificacoesSms());
+                    contaPoupanca = new ContaPoupanca(null, null, cliente, 0.01, 0.01, 0.01, 0, new NotificacaoSms());
                     System.out.println("***********************************");
                     System.out.println("********** Abrir Conta ************");
                     System.out.println("***********************************");
@@ -62,7 +62,7 @@ public class App {
                     String numeroConta = input.next();
                     System.out.println("Parabens, sua conta foi criada com sucesso!");
                 }else{
-                    contaCorrente = new ContaCorrente("", "", cliente, 0.01, 0,  new NotificacoesEmail());
+                    contaCorrente = new ContaCorrente(null, null, cliente, 0.01, 0,  new NotificacaoEmail());
                     System.out.println("***********************************");
                     System.out.println("********** Abrir Conta ************");
                     System.out.println("***********************************");
@@ -103,9 +103,8 @@ public class App {
                     System.out.println("Digite o valor do saque: ");
                     double sacar = input.nextDouble();
                     contaPoupanca.sacar(sacar);
+                    contaPoupanca.exibirExtrato();
                     System.out.println("Seu saldo " + contaPoupanca.getSaldo());
-                    System.out.println("Enviado notificação por SMS");
-                    System.out.println("Enviado notificação por Email");
 
 
                 }else{
@@ -117,9 +116,15 @@ public class App {
                     System.out.println("Digite o valor do saque: ");
                     double sacar = input.nextDouble();
                     contaCorrente.sacar(sacar);
-                    System.out.println("Saque realizado com sucesso!" + contaCorrente.getSaldo());
-                    System.out.println("Enviado notificação por SMS");
-                    System.out.println("Enviado notificação por Email");
+                    contaCorrente.exibirExtrato();
+                    if(contaCorrente.getChequeEspecial() > 0){
+                        System.out.println("Deseja utilizar Cheque Especial?");
+                        System.out.println("1. Sim");
+                        System.out.println("2. Não");
+                        int opcao = input.nextInt(); 
+                    }else{
+                        System.out.println("Saque realizado com sucesso!" + contaCorrente.getSaldo());
+                    }
                 }
 
             }else if(operacao == 3){
@@ -141,9 +146,8 @@ public class App {
                     System.out.println("Digite o valor do deposito: ");
                     double depositar = input.nextDouble();
                     contaPoupanca.depositar(depositar);
+                    contaPoupanca.exibirExtrato();
                     System.out.println("Deposito realizado com sucesso!" + contaPoupanca.getSaldo());
-                    System.out.println("Enviado notificação por SMS");
-                    System.out.println("Enviado notificação por Email");
 
                 }else{
                     System.out.println("***********************************");
@@ -154,9 +158,8 @@ public class App {
                     System.out.println("Digite o valor do deposito: ");
                     double depositar = input.nextDouble();
                     contaCorrente.depositar(depositar);
-                    System.out.println("Deposito realizado com sucesso!" + contaCorrente.getSaldo());
-                    System.out.println("Enviado notificação por SMS");
-                    System.out.println("Enviado notificação por Email");
+                    contaCorrente.exibirExtrato();
+                    System.out.println("Deposito realizado com sucesso! " + contaCorrente.getSaldo());
                 }
 
             }else if(operacao == 4){
@@ -177,10 +180,8 @@ public class App {
                     System.out.println("***********************************");
                     System.out.println("Digite o valor da transferencia: ");
                     double transferir = input.nextDouble();
+                    contaPoupanca.exibirExtrato();
                     contaPoupanca.transferir(contaCorrente, transferir);
-                    System.out.println("Transferencia realizada com sucesso!" + contaPoupanca.getSaldo());
-                    System.out.println("Enviado notificação por SMS");
-                    System.out.println("Enviado notificação por Email");
 
                 }else{
                     System.out.println("***********************************");
@@ -190,10 +191,8 @@ public class App {
                     System.out.println("***********************************");
                     System.out.println("Digite o valor da transferencia: ");
                     double transferir = input.nextDouble();
+                    contaCorrente.exibirExtrato();
                     contaCorrente.transferir(contaPoupanca, transferir);
-                    System.out.println("Transferencia realizada com sucesso!" + contaCorrente.getSaldo());
-                    System.out.println("Enviado notificação por SMS");
-                    System.out.println("Enviado notificação por Email");
                 }
 
             }else if(operacao == 5){
@@ -214,8 +213,6 @@ public class App {
                     System.out.println("***********************************");
                     System.out.println("Extrato: ");
                     contaPoupanca.exibirExtrato();
-                    System.out.println("Enviado notificação por SMS");
-                    System.out.println("Enviado notificação por Email");
 
                 }else{
                     System.out.println("***********************************");
@@ -225,8 +222,6 @@ public class App {
                     System.out.println("***********************************");
                     System.out.println("Extrato: ");
                     contaCorrente.exibirExtrato();
-                    System.out.println("Enviado notificação por SMS");
-                    System.out.println("Enviado notificação por Email");
                 }
 
             }else if(operacao == 6){

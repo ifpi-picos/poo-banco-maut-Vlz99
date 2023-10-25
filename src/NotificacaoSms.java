@@ -1,7 +1,7 @@
-public class NotificacoesSms implements Notificacoes {
+public class NotificacaoSms implements Notificacao {
     
     @Override
-    public void enviaNotificacoes(String tipo, double valor) {
+    public void enviaNotificacao(String tipo, double valor) {
 
         System.out.println("enviando notificacao por SMS, "+ tipo + ", Valor: "+ valor);
     }

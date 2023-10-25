@@ -62,5 +62,9 @@ public class Cliente {
         this.dataNascimento = null;
         this.endereco = null;
     }
+
+    public String getTipo() {
+        return null;
+    }
     
 }

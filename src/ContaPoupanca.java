@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContaPoupanca extends Conta{
     private double taxaSaque;
     private double taxaTransferencia;
     private double rendimento;
 
-    public ContaPoupanca(String agencia, String numero, Cliente cliente, double taxaSaque, double taxaTransferencia, double rendimento, int transferenciasRealizadas, Notificacoes notificacoes) {
+    public ContaPoupanca(String agencia, String numero, Cliente cliente, double taxaSaque, double taxaTransferencia, double rendimento, int transferenciasRealizadas, Notificacao notificacoes) {
         super(agencia, numero, cliente, transferenciasRealizadas, notificacoes);
         this.taxaSaque = taxaSaque;
         this.taxaTransferencia = taxaTransferencia;
@@ -14,6 +17,8 @@ public class ContaPoupanca extends Conta{
         double taxa = valor * taxaSaque;
         if (valor + taxa <= saldo) {
             saldo -= valor + taxa;
+            getNotificacao().enviaNotificacao("Saque", valor);
+            getTransacoes().add(new Transacao("Saque", valor));
         } else {
            System.out.println("Saldo insuficiente"); 
         }
@@ -24,6 +29,8 @@ public class ContaPoupanca extends Conta{
         if (valor + taxa <= saldo) {
             saldo -= valor + taxa;
             contaDestino.depositar(valor);
+            getNotificacao().enviaNotificacao("Transferencia", valor);
+            getTransacoes().add(new Transacao("Transferencia", valor));
         } else {
             System.out.println("Saldo insuficiente");
         }
