@@ -1,11 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class ContaCorrente extends Conta {
+    // chequeEspecial não está sendo usado na classe, deveria!
+    // chequeEspecial deveria ser usado nos métodos de saque e transferencia.
     private double chequeEspecial;
     private int transferenciasRealizadas;
 
-    public ContaCorrente(String agencia, String numero, Cliente cliente, double chequeEspecial, int transferenciasRealizadas, Notificacao notificacoes) {
+    public ContaCorrente(String agencia, String numero, Cliente cliente, double chequeEspecial,
+            int transferenciasRealizadas, Notificacao notificacoes) {
         super(agencia, numero, cliente, transferenciasRealizadas, notificacoes);
         this.chequeEspecial = chequeEspecial;
         this.transferenciasRealizadas = 0;
@@ -44,8 +44,7 @@ public class ContaCorrente extends Conta {
         this.transferenciasRealizadas = transferenciasRealizadas;
     }
 
-    public void notificacoes() {
-    }
+    public void notificacoes() {}
 
-    
+
 }
